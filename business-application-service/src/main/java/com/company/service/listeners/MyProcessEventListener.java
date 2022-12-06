@@ -13,22 +13,28 @@ public class MyProcessEventListener implements ProcessEventListener {
 
     @Override
     public void beforeProcessStarted(ProcessStartedEvent event) {
-        System.out.println("beforeProcessStarted " + event);
+        System.out.println("\n Antes del arranque del proceso con identificador: " + event.getProcessInstance().getProcess().getId());
+        System.out.println("Id de la instancia del proceso: "+event.getProcessInstance().getId()+"\n");
     }
 
     @Override
     public void afterProcessStarted(ProcessStartedEvent event) {
-        System.out.println("afterProcessStarted " + event);
+        System.out.println("\n Después de que arranque el proceso " + event.getProcessInstance().getProcess().getId());
+        System.out.println("Id de la instancia del proceso: "+event.getProcessInstance().getId());
+        System.out.println("Se arranca en el instante: "+event.getEventDate()+"\n");
     }
 
     @Override
     public void beforeProcessCompleted(ProcessCompletedEvent event) {
-        System.out.println("beforeProcessCompleted " + event);
+    	 System.out.println("\n Antes de completar el proceso " + event.getProcessInstance().getProcess().getId());
+         System.out.println("Id de la instancia del proceso: "+event.getProcessInstance().getId()+"\n");
     }
 
     @Override
     public void afterProcessCompleted(ProcessCompletedEvent event) {
-        System.out.println("afterProcessCompleted " + event);
+    	 System.out.println("\n Después de completar el proceso: " + event.getProcessInstance().getProcess().getId());
+         System.out.println("Id de la instancia del proceso: "+event.getProcessInstance().getId());
+         System.out.println("Se completa en el instante: "+event.getEventDate()+"\n");
     }
 
     @Override
@@ -53,12 +59,14 @@ public class MyProcessEventListener implements ProcessEventListener {
 
     @Override
     public void beforeVariableChanged(ProcessVariableChangedEvent event) {
-        System.out.println("beforeVariableChanged " + event);
+    	System.out.println("\n Antes de que la variable con id: "+event.getVariableId()+ " cambie, en el instante "+event.getEventDate()+"\n");
     }
 
     @Override
     public void afterVariableChanged(ProcessVariableChangedEvent event) {
-        System.out.println("afterVariableChanged " + event);
+    	System.out.println("\n Después de que la variable con id: "+event.getVariableId()+ " cambie, en el instante "+event.getEventDate());
+    	System.out.println("En el proceso: "+event.getProcessInstance().getProcessId());
+    	System.out.println("Valor anterior: "+event.getOldValue()+" Nuevo valor: "+event.getNewValue()+"\n");
     }
 
 }
